@@ -4,12 +4,21 @@ import java.util.Scanner;
 
 public class PalindromeCheckerApp {
     static void main(){
-                String word = "level";
-                String reversed = "";
-                for (int i = word.length() - 1; i >= 0; i--) {
-                    reversed = reversed + word.charAt(i);
+                String word = "radar";
+                char[] charArray = word.toCharArray();
+                int start = 0;
+                int end = charArray.length - 1;
+                boolean isPalindrome = true;
+
+                while (start < end) {
+                    if (charArray[start] != charArray[end]) {
+                        isPalindrome = false;
+                        break;
+                    }
+                    start++;
+                    end--;
                 }
-                if (word.equals(reversed)) {
+                if (isPalindrome) {
                     System.out.println(word + " is a palindrome.");
                 } else {
                     System.out.println(word + " is not a palindrome.");
