@@ -1,24 +1,38 @@
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Scanner;
+
 public class PalindromeCheckerApp {
-    static void main(){
-                String word = "madam";
 
-                Stack<Character> stack = new Stack<>();
+    // Recursive function to check palindrome
+    public static boolean isPalindrome(String str, int start, int end) {
 
-                for (int i = 0; i < word.length(); i++) {
-                    stack.push(word.charAt(i));
-                }
+        // Base condition
+        if (start >= end)
+            return true;
 
-                String reversed = "";
-                while (!stack.isEmpty()) {
-                    reversed = reversed + stack.pop();
-                }
+        // If characters are not equal
+        if (str.charAt(start) != str.charAt(end))
+            return false;
 
-                if (word.equals(reversed)) {
-                    System.out.println(word + " is a palindrome.");
-                } else {
-                    System.out.println(word + " is not a palindrome.");
-                }
-            }
-        }
+        // Recursive call
+        return isPalindrome(str, start + 1, end - 1);
+    }
 
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
+        boolean result = isPalindrome(input, 0, input.length() - 1);
+
+        if (result)
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not a Palindrome");
+
+        sc.close();
+    }
+}
